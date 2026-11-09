@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Perspectiva Jurídica UP: estilo CSL para Zotero
+  © 2026 Félix Verdugo
+
+  Esta obra está bajo una licencia Creative Commons
+  Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0).
+  Para ver una copia de la licencia, visita:
+  https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es
+
+  Si compartes una versión modificada, conserva este aviso, indica qué
+  cambiaste y publícala bajo la misma licencia.
+-->
+<style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.0" demote-non-dropping-particle="never" default-locale="es-MX" page-range-format="expanded">
+  <info>
+    <title>Perspectiva Jurídica UP (Universidad Panamericana, Campus Guadalajara)</title>
+    <title-short>Perspectiva Jurídica UP</title-short>
+    
+    <id>https://raw.githubusercontent.com/felixverdugo/Gestor-Bibliografico-Perspectiva-Juridica/main/perspectiva-juridica-up-felix-verdugo.csl</id>
+   <link href="https://raw.githubusercontent.com/felixverdugo/Gestor-Bibliografico-Perspectiva-Juridica/main/perspectiva-juridica-up-felix-verdugo.csl" rel="self"/>
+   <link href="https://github.com/felixverdugo/Gestor-Bibliografico-Perspectiva-Juridica" rel="documentation"/>
+   
+    <author>
+      <name>Félix Verdugo</name>
+    </author>
+    <category citation-format="note"/>
+    <category field="law"/>
+    <summary>Notas al pie y bibliografía conforme a las Normas Editoriales 2025 de la Revista Perspectiva Jurídica UP: apellidos en mayúsculas en notas; Ibidem, Ídem y op. cit.; bibliografía alfabética sin página citada y sin punto final.</summary>
+    <updated>2026-10-28T00:00:00-06:00</updated>
+    <rights license="https://creativecommons.org/licenses/by-nc-sa/4.0/">This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</rights>
+  </info>
+
+  <!-- GUÍA DE CAPTURA EN ZOTERO
+       - Primera edición: deja vacío "Edición". Para otras, sólo el número (28 -> "28ª ed").
+       - Coordinador: rol "Colaborador". Editor: rol "Editor".
+         Director o compilador: en "Extra", una línea
+         "editorial-director: Apellido || Nombre" o "compiler: Apellido || Nombre".
+       - Tomo (libros): número solo -> "t. 6"; romanos o combinados, escríbelos con
+         abreviatura: "t. II", "t. III, volumen 2".
+       - Revistas: "Serie" = época ("Nueva Época"); "Editorial" y "Lugar" de la revista.
+         Periodo semestral: en "Extra", "issued: 2020-07/2020-12" -> "2020 ... julio-diciembre".
+       - Leyes (tipo Estatuto): en la cita, localizador "Sección" -> "art." / "arts.".
+       - Tesis de la SCJN (tipo Caso): Tribunal = sala; Nombre del caso = rubro;
+         Número de expediente = "Tesis: 1a./J. 114/2013 (10a.)"; Reportero = Semanario;
+         Volumen = "libro 1, t. I"; Historia = época; Primera página = página.
+       - Internet: URL y fecha de acceso se añaden al final (salvo libros y capítulos). -->
+
+  <!-- ============================================================
+       TÉRMINOS
+       ============================================================ -->
+  <locale xml:lang="es">
+    <terms>
+      <!-- "28ª ed" -->
+      <term name="ordinal">ª</term>
+      <!-- Abreviaturas de las Normas: (ed.), (coord.), (dir.), (comp.) -->
+      <term name="editor" form="short">
+        <single>ed.</single>
+        <multiple>eds.</multiple>
+      </term>
+      <!-- En Zotero, el rol "Colaborador" (contributor) se usa para el coordinador -->
+      <term name="contributor" form="short">
+        <single>coord.</single>
+        <multiple>coords.</multiple>
+      </term>
+      <term name="editorial-director" form="short">
+        <single>dir.</single>
+        <multiple>dirs.</multiple>
+      </term>
+      <term name="compiler" form="short">
+        <single>comp.</single>
+        <multiple>comps.</multiple>
+      </term>
+      <!-- El localizador "Sección" de Zotero se imprime como artículo de ley -->
+      <term name="section" form="short">
+        <single>art.</single>
+        <multiple>arts.</multiple>
+      </term>
+    </terms>
+  </locale>
+
+  <!-- ============================================================
+       NOMBRES
+       ============================================================ -->
+  <!-- Responsables con rol: (ed.), (coord.), (dir.), (comp.).
+       En Zotero: Editor = (ed.); Colaborador = (coord.);
+       en el campo Extra: "editorial-director: Apellido || Nombre" = (dir.),
+       "compiler: Apellido || Nombre" = (comp.) -->
+  <macro name="editores-nota">
+    <names variable="editor">
+      <name and="text" delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=", ">
+        <name-part name="family" text-case="uppercase"/>
+      </name>
+      <et-al font-style="italic"/>
+      <label form="short" prefix=" (" suffix=")"/>
+      <substitute>
+        <names variable="contributor"/>
+        <names variable="editorial-director"/>
+        <names variable="compiler"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="editores-bib">
+    <names variable="editor">
+      <name and="text" delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=", ">
+        <name-part name="family" text-case="capitalize-first"/>
+      </name>
+      <et-al font-style="italic"/>
+      <label form="short" prefix=" (" suffix=")"/>
+      <substitute>
+        <names variable="contributor"/>
+        <names variable="editorial-director"/>
+        <names variable="compiler"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <!-- Notas: APELLIDOS, Nombre -->
+  <macro name="autor-nota">
+    <names variable="author">
+      <name and="text" delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=", ">
+        <name-part name="family" text-case="uppercase"/>
+      </name>
+      <et-al font-style="italic"/>
+      <substitute>
+        <text macro="editores-nota"/>
+        <text macro="titulo"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <!-- Notas subsecuentes (op. cit.): título corto si no hay autor -->
+  <macro name="autor-nota-corto">
+    <names variable="author">
+      <name and="text" delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=", ">
+        <name-part name="family" text-case="uppercase"/>
+      </name>
+      <et-al font-style="italic"/>
+      <substitute>
+        <text macro="editores-nota"/>
+        <text macro="titulo-corto"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <!-- Bibliografía: Apellidos, Nombre (sin mayúsculas sostenidas) -->
+  <macro name="autor-bib">
+    <names variable="author">
+      <name and="text" delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=", ">
+        <name-part name="family" text-case="capitalize-first"/>
+      </name>
+      <et-al font-style="italic"/>
+      <substitute>
+        <text macro="editores-bib"/>
+        <text macro="titulo"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <!-- Responsables de la obra colectiva: "en GARCÍA, Luis (coord.)" -->
+  <macro name="responsables-obra-nota">
+    <names variable="container-author">
+      <name and="text" delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=", ">
+        <name-part name="family" text-case="uppercase"/>
+      </name>
+      <et-al font-style="italic"/>
+      <substitute>
+        <text macro="editores-nota"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="responsables-obra-bib">
+    <names variable="container-author">
+      <name and="text" delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=", ">
+        <name-part name="family" text-case="capitalize-first"/>
+      </name>
+      <et-al font-style="italic"/>
+      <substitute>
+        <text macro="editores-bib"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="traduccion">
+    <group delimiter=" ">
+      <text value="trad. de"/>
+      <names variable="translator">
+        <name and="text" delimiter=", " delimiter-precedes-last="never"/>
+        <et-al font-style="italic"/>
+      </names>
+    </group>
+  </macro>
+
+  <!-- ============================================================
+       TÍTULOS
+       ============================================================ -->
+  <!-- Comillas para partes de una obra; cursivas para obras independientes;
+       sin formato para leyes y códigos. -->
+  <macro name="titulo">
+    <choose>
+      <if type="article-journal article-magazine article-newspaper chapter paper-conference entry entry-dictionary entry-encyclopedia post post-weblog legal_case" match="any">
+        <text variable="title" quotes="true"/>
+      </if>
+      <else-if type="webpage">
+        <choose>
+          <if variable="container-title">
+            <text variable="title" quotes="true"/>
+          </if>
+          <else>
+            <text variable="title" font-style="italic"/>
+          </else>
+        </choose>
+      </else-if>
+      <else-if type="legislation bill regulation treaty" match="any">
+        <text variable="title"/>
+      </else-if>
+      <else>
+        <text variable="title" font-style="italic"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="titulo-corto">
+    <choose>
+      <if type="article-journal article-magazine article-newspaper chapter paper-conference entry entry-dictionary entry-encyclopedia post post-weblog legal_case" match="any">
+        <text variable="title" form="short" quotes="true"/>
+      </if>
+      <else-if type="webpage">
+        <choose>
+          <if variable="container-title">
+            <text variable="title" form="short" quotes="true"/>
+          </if>
+          <else>
+            <text variable="title" form="short" font-style="italic"/>
+          </else>
+        </choose>
+      </else-if>
+      <else-if type="legislation bill regulation treaty" match="any">
+        <text variable="title" form="short"/>
+      </else-if>
+      <else>
+        <text variable="title" form="short" font-style="italic"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="contenedor">
+    <text variable="container-title" font-style="italic"/>
+  </macro>
+
+  <!-- ============================================================
+       DATOS DE EDICIÓN
+       ============================================================ -->
+  <!-- La primera edición no se señala: dejar vacío el campo Edición en Zotero -->
+  <macro name="edicion">
+    <choose>
+      <if is-numeric="edition">
+        <group delimiter=" ">
+          <number variable="edition" form="ordinal"/>
+          <text value="ed"/>
+        </group>
+      </if>
+      <else>
+        <text variable="edition"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="editorial-lugar">
+    <group delimiter=", ">
+      <text variable="publisher"/>
+      <text variable="publisher-place"/>
+    </group>
+  </macro>
+
+  <macro name="anio">
+    <choose>
+      <if variable="issued">
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- Periodo de la revista (p. ej. "julio-diciembre"): meses de la fecha -->
+  <macro name="periodo">
+    <date variable="issued">
+      <date-part name="month" range-delimiter="-"/>
+    </date>
+  </macro>
+
+  <macro name="fecha-completa">
+    <date variable="issued" delimiter=" ">
+      <date-part name="day" suffix=" de"/>
+      <date-part name="month" suffix=" de" range-delimiter="-"/>
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="coleccion">
+    <group delimiter=", ">
+      <text variable="collection-title"/>
+      <group delimiter=" ">
+        <label variable="collection-number" form="short"/>
+        <text variable="collection-number"/>
+      </group>
+    </group>
+  </macro>
+
+  <!-- Libros: número solo = tomo ("t. 2"); texto = tal cual ("vol. I", "t. III, vol. 2") -->
+  <macro name="tomo-libro">
+    <choose>
+      <if is-numeric="volume">
+        <group delimiter=" ">
+          <text value="t."/>
+          <text variable="volume"/>
+        </group>
+      </if>
+      <else>
+        <text variable="volume"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- Revistas: número solo = volumen ("vol. 8"); texto = tal cual ("t. XL") -->
+  <macro name="volumen-revista">
+    <choose>
+      <if is-numeric="volume">
+        <group delimiter=" ">
+          <label variable="volume" form="short"/>
+          <text variable="volume"/>
+        </group>
+      </if>
+      <else>
+        <text variable="volume"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="numero-revista">
+    <choose>
+      <if is-numeric="issue">
+        <group delimiter=" ">
+          <label variable="issue" form="short"/>
+          <text variable="issue"/>
+        </group>
+      </if>
+      <else>
+        <text variable="issue"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="paginas">
+    <group delimiter=" ">
+      <label variable="page" form="short"/>
+      <text variable="page"/>
+    </group>
+  </macro>
+
+  <macro name="localizador">
+    <group delimiter=" ">
+      <label variable="locator" form="short"/>
+      <text variable="locator"/>
+    </group>
+  </macro>
+
+  <!-- En nota: la página citada; si no se indica, el rango del artículo o capítulo -->
+  <macro name="pagina-nota">
+    <choose>
+      <if variable="locator">
+        <text macro="localizador"/>
+      </if>
+      <else-if type="article-journal article-magazine article-newspaper chapter paper-conference entry entry-dictionary entry-encyclopedia legal_case" match="any">
+        <text macro="paginas"/>
+      </else-if>
+    </choose>
+  </macro>
+
+  <!-- En bibliografía: nunca la página citada; sí el rango del artículo o capítulo -->
+  <macro name="pagina-bib">
+    <choose>
+      <if type="article-journal article-magazine article-newspaper chapter paper-conference entry entry-dictionary entry-encyclopedia legal_case" match="any">
+        <text macro="paginas"/>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- Documentos en internet: dirección y fecha de consulta al final de la cita.
+       Los libros y capítulos no imprimen la URL (suelen ser enlaces de catálogo). -->
+  <macro name="internet">
+    <choose>
+      <if type="book chapter" match="none">
+        <group delimiter=", ">
+          <group delimiter=" ">
+            <text value="disponible en:"/>
+            <text variable="URL"/>
+          </group>
+          <group delimiter=" ">
+            <text value="fecha de consulta:"/>
+            <date variable="accessed" delimiter=" ">
+              <date-part name="day" suffix=" de"/>
+              <date-part name="month" suffix=" de"/>
+              <date-part name="year"/>
+            </date>
+          </group>
+        </group>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- ============================================================
+       CUERPO DE LA REFERENCIA (común a nota y bibliografía)
+       ============================================================ -->
+  <macro name="datos-obra">
+    <choose>
+      <!-- LIBROS -->
+      <if type="book" match="any">
+        <group delimiter=", ">
+          <text macro="titulo"/>
+          <text macro="edicion"/>
+          <text macro="traduccion"/>
+          <text macro="editorial-lugar"/>
+          <text macro="anio"/>
+          <text macro="coleccion"/>
+          <text macro="tomo-libro"/>
+        </group>
+      </if>
+      <!-- CAPÍTULOS EN OBRA COLECTIVA -->
+      <else-if type="chapter paper-conference entry entry-dictionary entry-encyclopedia" match="any">
+        <group delimiter=", ">
+          <text macro="titulo"/>
+          <text macro="traduccion"/>
+          <group delimiter=" ">
+            <text term="in"/>
+            <group delimiter=", ">
+              <text macro="responsables-obra-nota"/>
+              <text macro="contenedor"/>
+            </group>
+          </group>
+          <text macro="edicion"/>
+          <text macro="editorial-lugar"/>
+          <text macro="anio"/>
+          <text macro="coleccion"/>
+          <text macro="tomo-libro"/>
+        </group>
+      </else-if>
+      <!-- REVISTAS -->
+      <else-if type="article-journal article-magazine" match="any">
+        <group delimiter=", ">
+          <text macro="titulo"/>
+          <text macro="traduccion"/>
+          <text macro="contenedor"/>
+          <text macro="editorial-lugar"/>
+          <text variable="collection-title"/>
+          <text macro="anio"/>
+          <text macro="volumen-revista"/>
+          <text macro="numero-revista"/>
+          <text macro="periodo"/>
+        </group>
+      </else-if>
+      <!-- PERIÓDICOS -->
+      <else-if type="article-newspaper">
+        <group delimiter=", ">
+          <text macro="titulo"/>
+          <text macro="traduccion"/>
+          <text macro="contenedor"/>
+          <text variable="publisher-place"/>
+          <text macro="fecha-completa"/>
+          <text variable="section"/>
+        </group>
+      </else-if>
+      <!-- LEGISLACIÓN -->
+      <else-if type="legislation bill regulation treaty" match="any">
+        <group delimiter=", ">
+          <text macro="titulo"/>
+          <text variable="number"/>
+          <text macro="contenedor"/>
+          <text macro="fecha-completa"/>
+        </group>
+      </else-if>
+      <!-- TESIS Y SENTENCIAS -->
+      <else-if type="legal_case">
+        <group delimiter=", ">
+          <text variable="authority"/>
+          <text macro="titulo"/>
+          <text variable="number"/>
+          <text macro="contenedor"/>
+          <text variable="references"/>
+          <text macro="tomo-libro"/>
+          <text macro="fecha-completa"/>
+        </group>
+      </else-if>
+      <!-- TESIS DE GRADO -->
+      <else-if type="thesis">
+        <group delimiter=", ">
+          <text macro="titulo"/>
+          <text variable="genre"/>
+          <text macro="editorial-lugar"/>
+          <text macro="anio"/>
+        </group>
+      </else-if>
+      <!-- PÁGINAS WEB, BLOGS -->
+      <else-if type="webpage post post-weblog" match="any">
+        <group delimiter=", ">
+          <text macro="titulo"/>
+          <text macro="contenedor"/>
+          <text variable="publisher"/>
+          <text macro="fecha-completa"/>
+        </group>
+      </else-if>
+      <!-- INFORMES, DOCUMENTOS Y DEMÁS -->
+      <else>
+        <group delimiter=", ">
+          <text macro="titulo"/>
+          <text variable="genre"/>
+          <text variable="number"/>
+          <text macro="traduccion"/>
+          <text macro="contenedor"/>
+          <text macro="editorial-lugar"/>
+          <text variable="collection-title"/>
+          <text macro="anio"/>
+        </group>
+      </else>
+    </choose>
+  </macro>
+
+
+  <!-- ============================================================
+       NOTAS
+       ============================================================ -->
+  <macro name="nota-completa">
+    <group delimiter=", ">
+      <choose>
+        <if type="legislation bill regulation treaty legal_case" match="none">
+          <text macro="autor-nota"/>
+        </if>
+      </choose>
+      <text macro="datos-obra"/>
+      <text macro="pagina-nota"/>
+      <text macro="internet"/>
+    </group>
+  </macro>
+
+  <macro name="nota-subsecuente">
+    <choose>
+      <!-- Leyes: se repite el nombre corto de la ley con el artículo -->
+      <if type="legislation bill regulation treaty" match="any">
+        <group delimiter=", ">
+          <text macro="titulo-corto"/>
+          <text macro="localizador"/>
+        </group>
+      </if>
+      <else-if type="legal_case">
+        <group delimiter=", ">
+          <text macro="titulo-corto"/>
+          <text value="op. cit." font-style="italic"/>
+          <text macro="localizador"/>
+        </group>
+      </else-if>
+      <else>
+        <group delimiter=", ">
+          <text macro="autor-nota-corto"/>
+          <choose>
+            <!-- Si el mismo autor tiene varias obras citadas, se añade el título corto -->
+            <if disambiguate="true">
+              <choose>
+                <if variable="author editor contributor editorial-director compiler" match="any">
+                  <text macro="titulo-corto"/>
+                </if>
+              </choose>
+            </if>
+          </choose>
+          <text value="op. cit." font-style="italic"/>
+          <text macro="localizador"/>
+        </group>
+      </else>
+    </choose>
+  </macro>
+
+  <citation et-al-min="3" et-al-use-first="1">
+    <layout delimiter="; ">
+      <choose>
+        <!-- Misma obra que la nota inmediata anterior, otra página -->
+        <if position="ibid-with-locator">
+          <choose>
+            <if variable="locator">
+              <group delimiter=", ">
+                <text value="Ibidem" font-style="italic"/>
+                <text macro="localizador"/>
+              </group>
+            </if>
+            <!-- Sin página (p. ej. en el simulador del Editor de estilo) -->
+            <else>
+              <text value="Ibidem" font-style="italic"/>
+            </else>
+          </choose>
+        </if>
+        <!-- Misma obra y misma página -->
+        <else-if position="ibid">
+          <text value="Ídem" font-style="italic"/>
+        </else-if>
+        <!-- Obra citada antes, pero no en la nota inmediata anterior -->
+        <else-if position="subsequent">
+          <text macro="nota-subsecuente"/>
+        </else-if>
+        <else>
+          <text macro="nota-completa"/>
+        </else>
+      </choose>
+    </layout>
+  </citation>
+
+  <!-- ============================================================
+       BIBLIOGRAFÍA
+       ============================================================ -->
+  <macro name="bib-cuerpo">
+    <choose>
+      <if type="chapter paper-conference entry entry-dictionary entry-encyclopedia" match="any">
+        <group delimiter=", ">
+          <text macro="titulo"/>
+          <text macro="traduccion"/>
+          <group delimiter=" ">
+            <text term="in"/>
+            <group delimiter=", ">
+              <text macro="responsables-obra-bib"/>
+              <text macro="contenedor"/>
+            </group>
+          </group>
+          <text macro="edicion"/>
+          <text macro="editorial-lugar"/>
+          <text macro="anio"/>
+          <text macro="coleccion"/>
+          <text macro="tomo-libro"/>
+        </group>
+      </if>
+      <else>
+        <text macro="datos-obra"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="orden-autor">
+    <choose>
+      <if type="legal_case">
+        <choose>
+          <if variable="authority">
+            <text variable="authority"/>
+          </if>
+          <else>
+            <text variable="title"/>
+          </else>
+        </choose>
+      </if>
+      <else-if type="legislation bill regulation treaty" match="any">
+        <text variable="title"/>
+      </else-if>
+      <else>
+        <names variable="author">
+          <name name-as-sort-order="all" sort-separator=", "/>
+          <substitute>
+            <names variable="editor"/>
+            <names variable="contributor"/>
+            <names variable="editorial-director"/>
+            <names variable="compiler"/>
+            <text variable="title"/>
+          </substitute>
+        </names>
+      </else>
+    </choose>
+  </macro>
+
+  <bibliography et-al-min="3" et-al-use-first="1">
+    <sort>
+      <key macro="orden-autor"/>
+      <key variable="issued"/>
+      <key variable="title"/>
+    </sort>
+    <layout>
+      <group delimiter=", ">
+        <choose>
+          <if type="legislation bill regulation treaty legal_case" match="none">
+            <text macro="autor-bib"/>
+          </if>
+        </choose>
+        <text macro="bib-cuerpo"/>
+        <text macro="pagina-bib"/>
+        <text macro="internet"/>
+      </group>
+    </layout>
+  </bibliography>
+</style>
